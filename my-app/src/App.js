@@ -2,8 +2,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import './App.css';
 import { uploadFile } from '@uploadcare/upload-client';
+import ImageUpload from './ImageUpload';
+import ImagePreview from './ImagePreview';
+import Sidebar from './Sidebar';
 
 function App() {
+  const [selectedComponent, setSelectedComponent] = useState(0);
   const [fileData, setFileData] = useState(null);
 
 
@@ -274,8 +278,8 @@ function App() {
     }
   };
 
-   // Handle file upload and crop
-   const handleCropByObject = async () => {
+  // Handle file upload and crop
+  const handleCropByObject = async () => {
     if (fileData) {
       try {
         setIsCropByObjectUploading(true);
@@ -301,8 +305,6 @@ function App() {
     }
   };
 
-
-
   const callExternalAPI = async (apiUrl) => {
     try {
       const response = await fetch(apiUrl);
@@ -312,179 +314,116 @@ function App() {
     }
   };
 
+  // ... (existing state declarations and functions)
+
+  const handleSelectComponent = (index) => {
+    setSelectedComponent(index);
+  };
+  const getCurrentComponent = () => {
+    switch (selectedComponent) {
+      case 0:
+        return (
+          <>
+            <ImageUpload
+              label="Upload & Preview"
+              onChange={handlePreviewFileChange}
+              imageUrl={previewImageUrl}
+              onTransform={handlePreview}
+              isUploading={isPreviewUploading}
+            />
+            <ImagePreview imageUrl={transformPreviewImageUrl} />
+          </>
+        );
+      case 1:
+        return (
+          <>
+            <ImageUpload
+              label="Upload & Resize"
+              onChange={handleResizeFileChange}
+              imageUrl={resizeImageUrl}
+              onTransform={handleResize}
+              isUploading={isResizeUploading}
+            />
+            <ImagePreview imageUrl={transformResizeImageUrl} />
+          </>
+        );
+      case 2:
+        return (
+          <>
+            <ImageUpload
+              label="Upload & Smart-Resize"
+              onChange={handleSmartResizeFileChange}
+              imageUrl={smartResizeImageUrl}
+              onTransform={handleSmartResize}
+              isUploading={isSmartResizeUploading}
+            />
+            <ImagePreview imageUrl={transformSmarrtResizeImageUrl} />
+          </>
+        );
+      case 3:
+        // Add case for 'Upload & Crop'
+        return (
+          <>
+            <ImageUpload
+              label="Upload & Crop"
+              onChange={handleCropFileChange}
+              imageUrl={cropImageUrl}
+              onTransform={handleCrop}
+              isUploading={isCropUploading}
+            />
+            <ImagePreview imageUrl={transformCropImageUrl} />
+          </>
+        );
+      case 4:
+        // Add case for 'Upload & Crop By Ratio'
+        return (
+          <>
+            <ImageUpload
+              label="Upload & Crop By Ratio"
+              onChange={handleCropByRatioFileChange}
+              imageUrl={cropByRatioImageUrl}
+              onTransform={handleCropByRatio}
+              isUploading={isCropByRatioUploading}
+            />
+            <ImagePreview imageUrl={transformCropByRatioImageUrl} />
+          </>
+        );
+      case 5:
+        // Add case for 'Upload & Crop By Object'
+        return (
+          <>
+
+            <ImageUpload
+              label="Upload & Crop By Object"
+              onChange={handleCropByObjectFileChange}
+              imageUrl={cropByObjectImageUrl}
+              onTransform={handleCropByObject}
+              isUploading={isCropByObjectUploading}
+            />
+
+            <ImagePreview imageUrl={transformCropByObjectImageUrl} />
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
+
   return (
     <div className="App">
-
-
-      <div className='row'>
-        <div className='col-6'>
-          <h2>Upload & Preview</h2>
-          <input type="file" onChange={handlePreviewFileChange} />
-          <button
-            className='btn btn-success mt-2'
-            onClick={handlePreview}
-            disabled={isPreviewUploading}
-          >
-            {isPreviewUploading ? 'Uploading...' : 'Transform image'}
-          </button>
-          {previewImageUrl && (
-            <div>
-              <p>Selected Image:</p>
-              <img src={previewImageUrl} alt="Selected" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
+      <div className="row">
+        <div className="col-3">
+          <Sidebar onSelectComponent={handleSelectComponent} selectedComponent={selectedComponent} />
         </div>
-        <div className='col-6'>
-          {transformPreviewImageUrl && (
-            <div>
-              <p>Transformed Image:</p>
-              <img src={transformPreviewImageUrl} alt="Transformed" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
+        <div className="col-9">
+          <h1>CareCloud Image Transformer</h1>
+          <p>Uploadcare makes simple, powerful, developer-friendly building blocks to handle file uploading, storage, processing, and delivery. You get a complete file handling infrastructure.</p>
+          {getCurrentComponent()}
         </div>
       </div>
 
-      <div className='row'>
-        <div className='col-6'>
-          <h2>Upload & Resize</h2>
-          <input type="file" onChange={handleResizeFileChange} />
-          <button
-            className='btn btn-success mt-2'
-            onClick={handleResize}
-            disabled={isResizeUploading}
-          >
-            {isResizeUploading ? 'Uploading...' : 'Transform image'}
-          </button>
-          {resizeImageUrl && (
-            <div>
-              <p>Selected Image:</p>
-              <img src={resizeImageUrl} alt="Selected" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-        <div className='col-6'>
-          {transformResizeImageUrl && (
-            <div>
-              <p>Transformed Image:</p>
-              <img src={transformResizeImageUrl} alt="Transformed" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className='row'>
-        <div className='col-6'>
-          <h2>Upload &  Smart-Resize</h2>
-          <input type="file" onChange={handleSmartResizeFileChange} />
-          <button
-            className='btn btn-success mt-2'
-            onClick={handleSmartResize}
-            disabled={isSmartResizeUploading}
-          >
-            {isSmartResizeUploading ? 'Uploading...' : 'Transform image'}
-          </button>
-          {smartResizeImageUrl && (
-            <div>
-              <p>Selected Image:</p>
-              <img src={smartResizeImageUrl} alt="Selected" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-        <div className='col-6'>
-          {transformSmarrtResizeImageUrl && (
-            <div>
-              <p>Transformed Image:</p>
-              <img src={transformSmarrtResizeImageUrl} alt="Transformed" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className='row'>
-        <div className='col-6'>
-          <h2>Upload & Crop</h2>
-          <input type="file" onChange={handleCropFileChange} />
-          <button
-            className='btn btn-success mt-2'
-            onClick={handleCrop}
-            disabled={isCropUploading}
-          >
-            {isCropUploading ? 'Uploading...' : 'Transform image'}
-          </button>
-          {cropImageUrl && (
-            <div>
-              <p>Selected Image:</p>
-              <img src={cropImageUrl} alt="Selected" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-        <div className='col-6'>
-          {transformCropImageUrl && (
-            <div>
-              <p>Transformed Image:</p>
-              <img src={transformCropImageUrl} alt="Transformed" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-      </div>
-
-
-      <div className='row'>
-        <div className='col-6'>
-          <h2>Upload & Crop By Ratio</h2>
-          <input type="file" onChange={handleCropByRatioFileChange} />
-          <button
-            className='btn btn-success mt-2'
-            onClick={handleCropByRatio}
-            disabled={isCropByRatioUploading}
-          >
-            {isCropByRatioUploading ? 'Uploading...' : 'Transform image'}
-          </button>
-          {cropByRatioImageUrl && (
-            <div>
-              <p>Selected Image:</p>
-              <img src={cropByRatioImageUrl} alt="Selected" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-        <div className='col-6'>
-          {transformCropByRatioImageUrl && (
-            <div>
-              <p>Transformed Image:</p>
-              <img src={transformCropByRatioImageUrl} alt="Transformed" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-      </div>
-
-      <div className='row'>
-        <div className='col-6'>
-          <h2>Upload & Crop By Object</h2>
-          <input type="file" onChange={handleCropByObjectFileChange} />
-          <button
-            className='btn btn-success mt-2'
-            onClick={handleCropByObject}
-            disabled={isCropByObjectUploading}
-          >
-            {isCropByObjectUploading ? 'Uploading...' : 'Transform image'}
-          </button>
-          {cropByObjectImageUrl && (
-            <div>
-              <p>Selected Image:</p>
-              <img src={cropByObjectImageUrl} alt="Selected" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-        <div className='col-6'>
-          {transformCropByObjectImageUrl && (
-            <div>
-              <p>Transformed Image:</p>
-              <img src={transformCropByObjectImageUrl} alt="Transformed" style={{ maxWidth: '100%' }} />
-            </div>
-          )}
-        </div>
-      </div>
-
+      {/* ... (remaining code) */}
     </div>
   );
 }
