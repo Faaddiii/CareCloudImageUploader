@@ -3,12 +3,20 @@
 }
 /* App.css */
 .image-preview-container {
-  margin-top: 20px;
+  margin-top: 60px; /* or your desired margin value */
   border: 1px solid #ddd;
   padding: 10px;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+.image-upload-container {
+  margin-top: 20px; /* or your desired margin value */
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 
 .preview-label {
   font-size: 16px;
@@ -96,23 +104,6 @@ p {
   color: #fff;
 }
 
-.image-preview-container {
-  margin-top: 20px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
 
-.preview-label {
-  font-size: 16px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
 
-.preview-image {
-  max-width: 100%;
-  border-radius: 5px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
 

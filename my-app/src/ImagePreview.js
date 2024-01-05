@@ -3,7 +3,7 @@ import React from 'react';
 
 function ImagePreview({ imageUrl }) {
   return (
-    <div>
+    <div className='col-6'> 
       {imageUrl && (
         <div className="image-preview-container">
           <p className="preview-label">Transformed Image</p>

@@ -29,6 +29,9 @@ function App() {
   const [cropByObjectImageUrl, setCropByObjectImageUrl] = useState(null);
   const [transformCropByObjectImageUrl, setTransformCropByObjectImageUrl] = useState(null);
 
+  const [scaleCropImageUrl, setScaleCropImageUrl] = useState(null);
+  const [transformScaleCropImageUrl, setTransformScaleCropImageUrl] = useState(null);
+
 
   const [isPreviewUploading, setIsPreviewUploading] = useState(false);
   const [isResizeUploading, setIsResizeUploading] = useState(false);
@@ -404,6 +407,22 @@ function App() {
             <ImagePreview imageUrl={transformCropByObjectImageUrl} />
           </>
         );
+        case 6:
+        // Add case for 'Upload & Crop By Object'
+        return (
+          <>
+
+            <ImageUpload
+              label="Upload & Scale crop"
+              onChange={handleCropByObjectFileChange}
+              imageUrl={cropByObjectImageUrl}
+              onTransform={handleCropByObject}
+              isUploading={isCropByObjectUploading}
+            />
+
+            <ImagePreview imageUrl={transformCropByObjectImageUrl} />
+          </>
+        );
       default:
         return null;
     }
@@ -417,9 +436,11 @@ function App() {
           <Sidebar onSelectComponent={handleSelectComponent} selectedComponent={selectedComponent} />
         </div>
         <div className="col-9">
+          <div className="row">
           <h1>CareCloud Image Transformer</h1>
           <p>Uploadcare makes simple, powerful, developer-friendly building blocks to handle file uploading, storage, processing, and delivery. You get a complete file handling infrastructure.</p>
           {getCurrentComponent()}
+          </div>
         </div>
       </div>
 
