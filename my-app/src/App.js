@@ -612,7 +612,7 @@ function App() {
             pet: 'cat'
           }
         });
-        const transformedUrl = `${result.cdnUrl}/-/zoom_objects/20/`;
+        const transformedUrl = `${result.cdnUrl}-/preview/-/zoom_objects/50/`;
         // Call the external API with the transformed URL
         const response = await callExternalAPI(transformedUrl);
         console.log(response)
