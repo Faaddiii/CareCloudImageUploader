@@ -558,7 +558,7 @@ function App() {
             pet: 'cat'
           }
         });
-        const transformedUrl = `${result.cdnUrl}/-/border_radius/10,100/50%/`;
+        const transformedUrl = `${result.cdnUrl}-/preview/-/border_radius/20,200/30p,70p/`;
         // Call the external API with the transformed URL
         const response = await callExternalAPI(transformedUrl);
         console.log(response)
@@ -585,7 +585,7 @@ function App() {
             pet: 'cat'
           }
         });
-        const transformedUrl = `${result.cdnUrl}/-/setfill/99ff99/`;
+        const transformedUrl = `${result.cdnUrl}/-/setfill/ece3d2/`;
         // Call the external API with the transformed URL
         const response = await callExternalAPI(transformedUrl);
         console.log(response)
