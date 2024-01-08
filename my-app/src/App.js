@@ -340,7 +340,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
 
@@ -368,7 +367,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
 
@@ -395,7 +393,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
 
@@ -423,7 +420,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/crop/520x340/center/`;
@@ -450,7 +446,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/crop/640x424/2560,830/`;
@@ -477,7 +472,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/crop/face/1:1/`;
@@ -529,7 +523,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/scale_crop/440x440/smart/80%25,80%25/`;
@@ -555,7 +548,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}-/preview/-/border_radius/20,200/30p,70p/`;
@@ -582,7 +574,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/setfill/ece3d2/`;
@@ -609,10 +600,9 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
-        const transformedUrl = `${result.cdnUrl}-/preview/-/zoom_objects/50/`;
+        const transformedUrl = `${result.cdnUrl}-/preview/-/zoom_objects/100/`;
         // Call the external API with the transformed URL
         const response = await callExternalAPI(transformedUrl);
         console.log(response)
@@ -636,7 +626,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/autorotate/yes/`;
@@ -663,7 +652,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/rotate/90/`;
@@ -690,7 +678,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/flip/`;
@@ -717,7 +704,6 @@ function App() {
           store: 'auto',
           metadata: {
             subsystem: 'js-client',
-            pet: 'cat'
           }
         });
         const transformedUrl = `${result.cdnUrl}/-/mirror/`;
